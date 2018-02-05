@@ -1,3 +1,10 @@
+
+/**
+*
+* Simple Panel Component in use with External Bootstrap
+*
+*/
+
 import React, { Component } from 'react';
 
 export default class Panel extends Component{

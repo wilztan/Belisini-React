@@ -1,3 +1,10 @@
+
+/*
+*
+* Bootstrap Form-Control Panel
+*
+*/
+
 import React, { Component } from 'react';
 
 export default class FormInput extends Component{

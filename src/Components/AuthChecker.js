@@ -1,3 +1,12 @@
+
+/**
+*
+* This Application stores cookies for token authentication.
+* Cookies for Authentication are modified within this class
+* Call this class to modify cookies
+*
+*/
+
 export default class AuthChecker{
 
   static setUserCookie(cookies){

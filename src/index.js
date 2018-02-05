@@ -23,6 +23,10 @@ import AdminPanel from './Pages/Auth/AdminPanel';
 import Product from './Pages/Product';
 import Shop from './Pages/Shop';
 
+
+/**
+* Check Your Login Status by reading cookies
+*/
 function isLoggedIn() {
   var cookie = AuthChecker.getUserCookie("PassportToken");
   if(cookie==''){

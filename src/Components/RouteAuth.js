@@ -1,3 +1,12 @@
+
+/**
+*
+* This Class is for securing Routes
+* Combining React with React-Router
+* All unwanted access or unAuthenticated Access are redirected
+*
+*/
+
 import React, { Component } from 'react';
 import {
   Redirect,

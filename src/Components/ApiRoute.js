@@ -1,3 +1,12 @@
+
+/**
+*
+* This Class is used to give every api call to be standardised.
+* All fetch are defined by written url below
+* It reduces unchanged API url later on
+*
+*/
+
 export default class ApiRoute {
   constructor() {}
 

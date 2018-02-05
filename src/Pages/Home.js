@@ -7,6 +7,18 @@ import Card from './../Components/Card';
 import FormInput from './../Components/FormInput';
 import ApiRoute from './../Components/ApiRoute';
 
+/**
+* Flow to create this Application
+* 1. Create your View
+* 2. Define Animation or function
+* 3. Create States
+* 4. Apply
+*
+* DO NOT USE STATE WHEN YOU START YOUR CODE
+* FINISH YOUR VIEW FIRST IF YOU ARE A BEGINER
+*/
+
+
 const categories =[
   {
     categories:'fashion',
@@ -51,6 +63,13 @@ class Home extends Component {
       </div>
     );
   }
+
+  /**
+  *
+  * Product state are written with this function
+  *
+  */
+
   setProduct(product){
     // alert(JSON.stringify(product));
     this.setState({ product:product });
