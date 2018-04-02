@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import {
   BrowserRouter as Router,
   Switch,
-  Redirect,
+  // Redirect,
   Route,
 } from 'react-router-dom';
 import RouteAuth from './Components/RouteAuth';
@@ -29,7 +29,7 @@ import Shop from './Pages/Shop';
 */
 function isLoggedIn() {
   var cookie = AuthChecker.getUserCookie("PassportToken");
-  if(cookie==''){
+  if(cookie===''){
     return false;
   }
   return true;

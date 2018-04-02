@@ -4,7 +4,6 @@ import FormInput from './../../../Components/FormInput';
 import Panel from './../../../Components/Panel';
 import ApiRoute from './../../../Components/ApiRoute';
 import AuthChecker from './../../../Components/AuthChecker';
-import image from './../../../logo.svg';
 
 export default class FormItem extends Component{
   constructor(props){
@@ -50,7 +49,7 @@ export default class FormItem extends Component{
     .catch(e => e);
   }
   render(){
-    const {header, method}= this.props;
+    const {header}= this.props;
     return(
       <Panel header={header}>
         <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">

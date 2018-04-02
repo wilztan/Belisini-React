@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Panel from './../Components/Panel';
 import ApiRoute from './../Components/ApiRoute';
+import TransactionButton from './../Components/TransactionButton';
 
 export default class Product extends Component{
   constructor(props){
     super(props);
     this.state={
       product:[],
+      user:0,
     }
     this.fetchProduct = this.fetchProduct.bind(this);
     this.setProduct = this.setProduct.bind(this);
@@ -21,10 +23,13 @@ export default class Product extends Component{
   }
   setProduct(product){
     // alert(JSON.stringify(product));
-    this.setState({product:product});
+    this.setState({product:product.product});
   }
   componentDidMount(){
     this.fetchProduct();
+  }
+  onBuyTransaction(){
+
   }
   render(){
     const {product} = this.state;
@@ -32,7 +37,11 @@ export default class Product extends Component{
       <div className="section-main">
         <div className="row">
           <div className="col-md-4">
-            <img style={{width:'100%'}} src={product.image} />
+            <img
+              style={{width:'100%'}}
+              src={product.image}
+              alt="product"
+            />
           </div>
 
           <div className="col-md-8">
@@ -44,7 +53,11 @@ export default class Product extends Component{
               <p>stock : {product.stock}</p>
               {product.description}
             </Panel>
-            <button className="btn btn-warning">Buy Now</button>
+
+            <TransactionButton
+              item_id={product.id}
+            />
+
           </div>
 
         </div>

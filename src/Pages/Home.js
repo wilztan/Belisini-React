@@ -4,7 +4,6 @@ import './Home.css';
 import Carousel from './../Components/Carousel';
 import Panel from './../Components/Panel';
 import Card from './../Components/Card';
-import FormInput from './../Components/FormInput';
 import ApiRoute from './../Components/ApiRoute';
 
 /**
@@ -72,7 +71,7 @@ class Home extends Component {
 
   setProduct(product){
     // alert(JSON.stringify(product));
-    this.setState({ product:product });
+    this.setState({ product:product.product });
   }
   fetchProduct(){
     var url = ApiRoute.getProductPath();
@@ -99,16 +98,16 @@ class Home extends Component {
     this.setState({filter:state});
   }
   FilterProduct (product){
-    if(this.state.filter.name=='' && this.state.filter.price==''){
+    if(this.state.filter.name==='' && this.state.filter.price===''){
       return product.name.toLowerCase().includes("") && product.price.toLowerCase().includes("");
     }else{
-      if(this.state.filter.name=='' && this.state.filter.price!=''){
+      if(this.state.filter.name==='' && this.state.filter.price!==''){
         return product.name.toLowerCase().includes('') && product.price.toLowerCase().includes(this.state.filter.price.toLowerCase());
       }
-      if(this.state.filter.name!='' && this.state.filter.price==''){
+      if(this.state.filter.name!=='' && this.state.filter.price===''){
         return product.name.toLowerCase().includes(this.state.filter.name.toLowerCase()) && product.price.toLowerCase().includes('');
       }
-      if(this.state.filter.name!='' && this.state.filter.price!=''){
+      if(this.state.filter.name!=='' && this.state.filter.price!==''){
         return product.name.toLowerCase().includes(this.state.filter.name.toLowerCase()) && product.price.toLowerCase().includes(this.state.filter.price.toLowerCase());
       }
     }
@@ -121,29 +120,33 @@ class Home extends Component {
       <div>
         <div className="row section-main">
           <div className="col-md-6">
-            <h3>Promo Terbaru dari Belisini</h3>
-            <Carousel/>
+            <img
+              src="https://lorempixel.com/200/200/?39570"
+              alt="Banner"
+              ></img>
           </div>
-          <div className="col-md-6">
-            <h3>Cari Lebih Banyak Item</h3>
-            <Panel>
-              <div>
-                <form>
-                  <FormInput
-                    class="form-control"
-                    id="formName"
-                    name="name"
-                    placeholder="Nama Produk"
-                    onChange={(e)=>this.handleFilterChange("name",e)}
-                  />
-
-
-                  <FormInput type="number" class="form-control" id="formPrice" name="price" placeholder="Harga Produk" onChange={(e)=>this.handleFilterChange("price",e)} />
-
-                  <button className="btn btn-submit">Cari</button>
-                </form>
-              </div>
-            </Panel>
+          <div className="col-md-4">
+            <div className="col-md-12">
+              <Carousel/>
+            </div>
+            <div className="col-md-6 col-xs-6">
+              <img
+                src="https://lorempixel.com/200/200/?39570"
+                alt="Banner"
+              />
+            </div>
+            <div className="col-md-6 col-xs-6">
+              <img
+                src="https://lorempixel.com/200/200/?39570"
+                alt="Banner"
+              />
+            </div>
+          </div>
+          <div className="col-md-2">
+            <img
+              src="https://lorempixel.com/200/200/?39570"
+              alt="Banner"
+            />
           </div>
         </div>
 
@@ -152,9 +155,9 @@ class Home extends Component {
           <div className="col-md-3">
             <Panel header="Categories">
               <ul>
-                {categories.map(function(categories) {
+                {categories.map(function(categories,index) {
                   return(
-                      <li>{categories.categories}</li>
+                      <li key={index}>{categories.categories}</li>
                   );
                 })}
               </ul>

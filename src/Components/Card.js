@@ -10,9 +10,9 @@ export default class Card extends Component{
     return(
       <div>
         <Link to={url}>
-          <div class="card">
+          <div className="card">
             <img src={product.image} alt="Avatar"/>
-            <div class="card-container">
+            <div className="card-container">
               <h4><b>{product.name}</b></h4>
               <p>{product.stock}</p>
               <p>{product.price}</p>

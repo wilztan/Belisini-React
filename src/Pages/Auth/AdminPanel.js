@@ -2,69 +2,60 @@ import React, { Component } from 'react';
 import './AdminPanel.css';
 import Sidebar from './../../Components/Sidebar';
 import Dashboard from './../../Components/Dashboard';
+import ApiRoute from './../../Components/ApiRoute';
+import AuthChecker from './../../Components/AuthChecker';
 
 
 import Main from './Admin/Main';
 import Item from './Admin/Item';
 import Profile from './Admin/Profile';
 import FormItem from './Admin/FormItem';
+import MyOder from './Admin/MyOrder';
+import MyTransaction from './Admin/MyTransaction';
 
-const product = [
-  {
-    id:'1',
-    product: 'React E-Book',
-    link: 'https://facebook.github.io/react/',
-    price: 'Jordan Walke',
-    stock: '10',
-  },
-
-  {
-    id:'1',
-    product: 'Laravel E-Book',
-    link: 'https://facebook.github.io/react/',
-    price: 'Jordan Walke',
-    stock: '10',
-  },
-
-  {
-    id:'1',
-    product: 'Bootstrap E-Book',
-    link: 'https://facebook.github.io/react/',
-    price: 'Jordan Walke',
-    stock: '10',
-  },
-
-  {
-    id:'1',
-    product: 'Adonis E-Book',
-    link: 'https://facebook.github.io/react/',
-    price: 'Jordan Walke',
-    stock: '10',
-  },
-
-  {
-    id:'1',
-    product: 'Express JS E-Book',
-    link: 'https://facebook.github.io/react/',
-    price: 'Jordan Walke',
-    stock: '10',
-  },
-];
 
 class AdminPanel extends Component{
   constructor(props) {
     super(props);
     this.state={
       page:0,
+      product:[],
+      transaction:[],
+      order:[],
     }
     // This line is important!
     this.getPage = this.getPage.bind(this);
+    this.getMyProduct = this.getMyProduct.bind(this);
+    this.setProduct = this.setProduct.bind(this);
   }
 
   getPage(pages) {
     this.setState({
-      page: parseInt(pages)
+      page: parseInt(pages,0),
     });
+  }
+
+  getMyProduct(){
+    var token = AuthChecker.getUserCookie("PassportToken");
+    fetch(ApiRoute.getMyProduct(), {
+        method: 'GET',
+        headers: {
+          // 'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+    })
+    .then(response => response.json())
+    .then(product => this.setProduct(product))
+    .catch(e => e);
+  }
+
+  setProduct(product){
+    this.setState({product:product.product});
+  }
+
+  componentDidMount(){
+    this.getMyProduct();
   }
 
   render() {
@@ -87,7 +78,7 @@ class AdminPanel extends Component{
         link:'2',
       },
       {
-        name:'My Cart',
+        name:'My Transaction',
         link:'3',
       },
       {
@@ -101,13 +92,23 @@ class AdminPanel extends Component{
           return(<Main/>);
           break;
         case 1:
-          return(<Item product={product} />);
+          return(
+            <Item
+              title="Your Selling Item"
+              product={this.state.product}
+            />
+          );
           break;
         case 2:
-          return(<Item product={product} />);
+          return(
+            <MyOder/>
+          );
           break;
         case 3:
-          return(<Item product={product} />);
+          return(
+            <MyTransaction
+            />
+          );
           break;
         case 4:
           return(<Profile/>);
@@ -126,7 +127,7 @@ class AdminPanel extends Component{
             <Sidebar>
               {listButton.map((listButton,index)=>{
                 return(
-                  <a  onClick={()=>this.getPage(listButton.link)} value={listButton.link} className="btn btn-submit">{listButton.name}</a>
+                  <a  key={index} onClick={()=>this.getPage(listButton.link)} value={listButton.link} className="btn btn-submit">{listButton.name}</a>
                 );
               })}
             </Sidebar>

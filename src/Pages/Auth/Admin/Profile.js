@@ -17,7 +17,7 @@ export default class Profile extends Component{
   }
   fetchUser(){
     var token = AuthChecker.getUserCookie("PassportToken");
-    if(token==''){
+    if(token===''){
       this.setState({auth:0});
     }else{
       fetch(ApiRoute.getProfilePath(), {
@@ -44,7 +44,11 @@ export default class Profile extends Component{
       <div>
         <div className="row">
           <div className="col-md-4">
-            <img className="App-logo" src={image} />
+            <img
+              alt="Profile"
+              className="App-logo"
+              src={image}
+            />
           </div>
           <div className="col-md-8">
             <Panel header="Profile Information">

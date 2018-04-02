@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Route,
+  // Route,
   Link,
-  HashRouter
+  // HashRouter
 } from "react-router-dom";
 import './Navbar.css';
 import FormInput from './FormInput.js';
@@ -23,7 +23,7 @@ class Navbar extends Component {
   }
   handleUser(){
     var token = AuthChecker.getUserCookie("PassportToken");
-    if(token==''){
+    if(token===''){
       this.setState({auth:0});
     }else{
       fetch(ApiRoute.getProfilePath(), {
@@ -40,7 +40,7 @@ class Navbar extends Component {
     }
   }
   handleInfo(result){
-    if(result.message=="Unauthenticated."){
+    if(result.message==="Unauthenticated."){
         this.handleLogout();
     }else{
       this.setState({
@@ -72,7 +72,9 @@ class Navbar extends Component {
       return(
         <ul className="nav navbar-nav navbar-right">
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown">{this.state.user.name} <b className="caret"></b></a>
+            <a
+              className="dropdown-toggle"
+              data-toggle="dropdown">{this.state.user.name} <b className="caret"></b></a>
             <ul className="dropdown-menu">
               <li><Link to="/main/admin">Dashboard</Link></li>
               <li><a href="/" onClick={this.handleLogout}>Log Out</a></li>
@@ -88,7 +90,7 @@ class Navbar extends Component {
             <li>Situs jual beli online mudah & terpercaya</li>
           </ul>
         </div>
-        <nav className="navbar navbar-default" role="navigation">
+        <nav className="navbar navbar-default">
         	<div className="container-fluid">
         		<div className="navbar-header">
         			<button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -109,8 +111,10 @@ class Navbar extends Component {
                 <li><Link to="/contact">Contact Us</Link></li>
         			</ul>
         			<form className="navbar-form navbar-left" role="search">
-                <FormInput type="text" class="form-control" placeholder="Search"/>
-        				<button type="submit" className="btn btn-default">Submit</button>
+                <div>
+                  <FormInput type="text" class="form-control" placeholder="Search"/>
+          				<button type="submit" className="btn btn-default">Submit</button>
+                </div>
         			</form>
         			{isAuthenticated()}
         		</div>

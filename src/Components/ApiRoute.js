@@ -8,8 +8,6 @@
 */
 
 export default class ApiRoute {
-  constructor() {}
-
   static url = {
     MAIN:'http://127.0.0.1:8000/api/',
     PRODUCT_PATH:'product',
@@ -18,6 +16,11 @@ export default class ApiRoute {
     REGISTER:'register',
     PROFILE:'profile',
     PRODUCT_RESOURCE:'item',
+    PERSONAL_PRODUCT:'getMyProduct',
+    PERSONAL_TRANSACTION:'sold',
+    PERSONAL_ORDER:'order',
+    ADD_TO_CART:'',
+    TRANSACTION:'transaction'
   };
 
   static getMainRoute() {
@@ -41,5 +44,21 @@ export default class ApiRoute {
 
   static getProductResourcePath(){
     return this.url.MAIN+this.url.PRODUCT_RESOURCE;
+  }
+
+  static getMyProduct(){
+    return this.url.MAIN+this.url.PERSONAL_PRODUCT;
+  }
+
+  static getUserTransaction(){
+    return this.getTransaction()+'/'+this.url.PERSONAL_TRANSACTION;
+  }
+
+  static getUserOrder(){
+    return this.getTransaction()+'/'+this.url.PERSONAL_ORDER;
+  }
+
+  static getTransaction(){
+    return this.url.MAIN+this.url.TRANSACTION;
   }
 }
